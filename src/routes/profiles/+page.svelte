@@ -179,10 +179,11 @@
                 <!-- Edit Mode -->
                 <div class="space-y-4">
                   <div>
-                    <label class="block text-sm font-medium text-text-primary dark:text-text-primary mb-1">
+                    <label for="phone_{profile.id}" class="block text-sm font-medium text-text-primary dark:text-text-primary mb-1">
                       Phone Number
                     </label>
                     <input
+                      id="phone_{profile.id}"
                       type="tel"
                       bind:value={editingProfile.phone_number}
                       class="w-full px-3 py-2 border border-border-primary dark:border-border-primary rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-bg-primary dark:bg-bg-tertiary text-text-primary dark:text-text-primary"
@@ -191,10 +192,11 @@
                   </div>
 
                   <div>
-                    <label class="block text-sm font-medium text-text-primary dark:text-text-primary mb-1">
+                    <label for="routing_{profile.id}" class="block text-sm font-medium text-text-primary dark:text-text-primary mb-1">
                       Routing Number
                     </label>
                     <input
+                      id="routing_{profile.id}"
                       type="tel"
                       bind:value={editingProfile.routing_number}
                       class="w-full px-3 py-2 border border-border-primary dark:border-border-primary rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-bg-primary dark:bg-bg-tertiary text-text-primary dark:text-text-primary"
@@ -203,10 +205,11 @@
                   </div>
 
                   <div>
-                    <label class="block text-sm font-medium text-text-primary dark:text-text-primary mb-1">
+                    <label for="address_{profile.id}" class="block text-sm font-medium text-text-primary dark:text-text-primary mb-1">
                       Address
                     </label>
                     <textarea
+                      id="address_{profile.id}"
                       bind:value={editingProfile.address}
                       rows="2"
                       class="w-full px-3 py-2 border border-border-primary dark:border-border-primary rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-bg-primary dark:bg-bg-tertiary text-text-primary dark:text-text-primary resize-none"
@@ -215,10 +218,11 @@
                   </div>
 
                   <div>
-                    <label class="block text-sm font-medium text-text-primary dark:text-text-primary mb-1">
+                    <label for="discord_{profile.id}" class="block text-sm font-medium text-text-primary dark:text-text-primary mb-1">
                       Discord
                     </label>
                     <input
+                      id="discord_{profile.id}"
                       type="text"
                       bind:value={editingProfile.discord}
                       class="w-full px-3 py-2 border border-border-primary dark:border-border-primary rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-bg-primary dark:bg-bg-tertiary text-text-primary dark:text-text-primary"
