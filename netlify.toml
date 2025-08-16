@@ -1,0 +1,23 @@
+[build]
+  command = "npm run build"
+  publish = "build"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# Prevent Netlify from scanning for secrets in build output
+[build.processing]
+  skip_processing = false
+
+# Environment variables that should be available at build time
+[context.production.environment]
+  SUPABASE_URL = "your_supabase_url_here"
+  SUPABASE_ANON_KEY = "your_supabase_anon_key_here"
+
+[context.deploy-preview.environment]
+  SUPABASE_URL = "your_supabase_url_here"
+  SUPABASE_ANON_KEY = "your_supabase_anon_key_here"
+
+[context.branch-deploy.environment]
+  SUPABASE_URL = "your_supabase_url_here"
+  SUPABASE_ANON_KEY = "your_supabase_anon_key_here"

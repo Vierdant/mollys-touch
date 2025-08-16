@@ -16,8 +16,8 @@ npm install
 2. Create a `.env` file in the root directory with your Supabase credentials:
 
 ```env
-VITE_SUPABASE_URL=your_supabase_project_url_here
-VITE_SUPABASE_ANON_KEY=your_supabase_anon_key_here
+SUPABASE_URL=your_supabase_project_url_here
+SUPABASE_ANON_KEY=your_supabase_anon_key_here
 ```
 
 ## Supabase Setup
