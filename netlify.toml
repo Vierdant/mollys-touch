@@ -2,9 +2,6 @@
   command = "npm run build"
   publish = "build"
 
-[build.environment]
-  NODE_VERSION = "18"
-
 # Prevent Netlify from scanning for secrets in build output
 [build.processing]
   skip_processing = false
