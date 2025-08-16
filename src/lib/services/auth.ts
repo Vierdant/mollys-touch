@@ -1,7 +1,6 @@
 import { auth } from "../stores/auth";
 import { buildAuthorizationUrl } from "../config/oauth";
 import { isFakeAuthEnabled, getFakeUser } from "../config/testing";
-import { supabase } from "../supabase";
 
 export interface Character {
   id: number;
@@ -125,22 +124,20 @@ export class AuthService {
     try {
       console.log("🔧 Initializing profiles for user:", user.username);
       
-      // Get existing profiles from Supabase
-      const { data: existingProfiles, error: fetchError } = await supabase
-        .from('profiles')
-        .select('*')
-        .in('id', user.character.map(c => c.id));
-
-      if (fetchError) {
-        console.error('Error fetching profiles:', fetchError);
-        throw fetchError;
+      // Get existing profiles from API
+      const characterIds = user.character.map(c => c.id).join(',');
+      const response = await fetch(`/api/profiles?characterIds=${characterIds}`);
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch profiles');
       }
-
-      console.log("🔧 Existing profiles from Supabase:", existingProfiles);
+      
+      const { profiles: existingProfiles } = await response.json();
+      console.log("🔧 Existing profiles from API:", existingProfiles);
 
       // Create profiles array with existing data or defaults
       const profiles: CharacterProfile[] = user.character.map(char => {
-        const existingProfile = existingProfiles?.find(p => p.id + "" === char.id + "");
+        const existingProfile = existingProfiles?.find((p: any) => p.id + "" === char.id + "");
         
         if (existingProfile) {
           console.log("🔧 Found existing profile for character:", char.firstname, char.lastname);
@@ -151,7 +148,7 @@ export class AuthService {
           };
         } else {
           console.log("🔧 Creating new profile for character:", char.firstname, char.lastname);
-          // Create new profile in Supabase
+          // Create new profile via API
           const newProfile = {
             id: char.id,
             username: `${char.firstname} ${char.lastname}`,
@@ -162,7 +159,7 @@ export class AuthService {
             is_active: false
           };
 
-          // Insert into Supabase
+          // Insert via API
           this.createProfile(newProfile);
           
           return newProfile;
@@ -186,20 +183,17 @@ export class AuthService {
 
   static async createProfile(profile: CharacterProfile) {
     try {
-      const { error } = await supabase
-        .from('profiles')
-        .insert({
-          id: profile.id,
-          username: profile.username,
-          phone_number: profile.phone_number || '',
-          routing_number: profile.routing_number || '',
-          address: profile.address || '',
-          discord: profile.discord || ''
-        });
+      const response = await fetch('/api/profiles', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(profile)
+      });
 
-      if (error) {
-        console.error('Error creating profile:', error);
-        throw error;
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to create profile');
       }
 
       return { success: true };
@@ -211,20 +205,17 @@ export class AuthService {
 
   static async updateProfile(profile: CharacterProfile) {
     try {
-      const { error } = await supabase
-        .from('profiles')
-        .update({
-          username: profile.username,
-          phone_number: profile.phone_number || '',
-          routing_number: profile.routing_number || '',
-          address: profile.address || '',
-          discord: profile.discord || ''
-        })
-        .eq('id', profile.id);
+      const response = await fetch('/api/profiles', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(profile)
+      });
 
-      if (error) {
-        console.error('Error updating profile:', error);
-        throw error;
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to update profile');
       }
 
       return { success: true };
@@ -236,17 +227,16 @@ export class AuthService {
 
   static async getProfiles(characterIds: number[]) {
     try {
-      const { data, error } = await supabase
-        .from('profiles')
-        .select('*')
-        .in('id', characterIds);
-
-      if (error) {
-        console.error('Error fetching profiles:', error);
-        throw error;
+      const ids = characterIds.join(',');
+      const response = await fetch(`/api/profiles?characterIds=${ids}`);
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to fetch profiles');
       }
-
-      return data || [];
+      
+      const { profiles } = await response.json();
+      return profiles || [];
     } catch (error) {
       console.error('Error fetching profiles:', error);
       throw error;

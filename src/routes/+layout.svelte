@@ -15,17 +15,11 @@
         const { user } = await AuthService.getCurrentUser();
         
         if (user) {
-          // Initialize profiles from Supabase
-          const profiles = await AuthService.initializeProfiles(user);
-          
-          // Set profiles in the store
-          auth.setProfiles(profiles);
-          
-          // Set active profile
-          const activeProfile = profiles.find(p => p.is_active);
-          if (activeProfile) {
-            auth.setActiveProfile(activeProfile);
-          }
+                  // Initialize profiles from API
+        const profiles = await AuthService.initializeProfiles(user);
+        
+        // Profiles are already set in the store by initializeProfiles
+        // The active profile is also set in the store
         }
       } catch (error) {
         console.error('Failed to complete authentication:', error);

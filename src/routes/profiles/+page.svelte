@@ -12,12 +12,21 @@
   let editingProfile: CharacterProfile | null = null;
 
   onMount(async () => {
-    if ($auth.profiles.length === 0 && $auth.user) {
-      await AuthService.initializeProfiles($auth.user);
-    } else if (!$auth.user) {
-      goto("/login");
+    try {
+      if (!$auth.user) {
+        goto("/login");
+        return;
+      }
+
+      if ($auth.profiles.length === 0) {
+        await AuthService.initializeProfiles($auth.user);
+      }
+    } catch (err) {
+      error = "Failed to load profiles";
+      console.error(err);
+    } finally {
+      loading = false;
     }
-    loading = false;
   });
 
   function editProfile(profile: CharacterProfile) {

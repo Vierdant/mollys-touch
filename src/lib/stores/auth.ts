@@ -21,7 +21,6 @@ function createAuthStore() {
   return {
     subscribe,
     setUser: (user: User | null) => {
-      console.log("🔧 Auth store: Setting user", user);
       update((state) => ({ 
         ...state, 
         user, 
@@ -30,11 +29,9 @@ function createAuthStore() {
       }));
     },
     setProfiles: (profiles: CharacterProfile[]) => {
-      console.log("🔧 Auth store: Setting profiles", profiles);
       update((state) => ({ ...state, profiles }));
     },
     setActiveProfile: (profile: CharacterProfile | null) => {
-      console.log("🔧 Auth store: Setting active profile", profile);
       update((state) => ({ ...state, activeProfile: profile }));
     },
     updateProfile: (updatedProfile: CharacterProfile) => {

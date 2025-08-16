@@ -6,15 +6,7 @@
 
   let isOpen = false;
 
-  // Debug: Log auth store state
-  $: {
-    console.log("🔧 ProfileDropdown: Auth store state", {
-      user: $auth.user,
-      profiles: $auth.profiles,
-      activeProfile: $auth.activeProfile,
-      isAuthenticated: $auth.isAuthenticated
-    });
-  }
+
 
   function toggleDropdown() {
     isOpen = !isOpen;
