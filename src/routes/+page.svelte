@@ -570,12 +570,12 @@
                 Silver
               </h3>
               <p class="text-text-secondary dark:text-text-secondary mb-4">
-                "The Essentials"
+                "Focused Relaxation"
               </p>
               <p
                 class="text-sm text-text-tertiary dark:text-text-tertiary mb-6"
               >
-                Budget-friendly starter
+                Quick relief from stress and tension
               </p>
               <div
                 class="text-3xl font-bold text-text-primary dark:text-text-primary mb-2"
@@ -600,7 +600,7 @@
                   ></path>
                 </svg>
                 <span class="text-text-secondary dark:text-text-secondary">
-                  15 minutes Swedish or Deep Tissue massage
+                  <strong>20 minutes</strong> of special focused relaxation (Back, Neck, Shoulders, and Arms)
                 </span>
               </li>
               <li class="flex items-start space-x-3">
@@ -618,7 +618,7 @@
                   ></path>
                 </svg>
                 <span class="text-text-secondary dark:text-text-secondary">
-                  Basic aromatherapy
+                  Scented candles & ambient setup
                 </span>
               </li>
               <li class="flex items-start space-x-3">
@@ -636,7 +636,25 @@
                   ></path>
                 </svg>
                 <span class="text-text-secondary dark:text-text-secondary">
-                  Travel to any location within Los Santos
+                  Complimentary glass of wine
+                </span>
+              </li>
+              <li class="flex items-start space-x-3">
+                <svg
+                  class="w-5 h-5 text-gray-500 mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                <span class="text-text-secondary dark:text-text-secondary">
+                  Molly's Touch <strong>silver</strong> gift bag
                 </span>
               </li>
             </ul>
@@ -691,7 +709,7 @@
               <p
                 class="text-sm text-text-tertiary dark:text-text-tertiary mb-6"
               >
-                Most popular
+                Balanced treatment with special care that eases stress across your body
               </p>
               <div
                 class="text-3xl font-bold text-text-primary dark:text-text-primary mb-2"
@@ -716,7 +734,7 @@
                   ></path>
                 </svg>
                 <span class="text-text-secondary dark:text-text-secondary">
-                  30 minutes massage (choice of style)
+                  <strong>30 minutes</strong> of complete body relaxation with premium oils (Lavender, Eucalyptus, and more)
                 </span>
               </li>
               <li class="flex items-start space-x-3">
@@ -734,7 +752,7 @@
                   ></path>
                 </svg>
                 <span class="text-text-secondary dark:text-text-secondary">
-                  Hot stones or aromatherapy included
+                  Facial treatment <strong>or</strong> manicure/pedicure (client choice)
                 </span>
               </li>
               <li class="flex items-start space-x-3">
@@ -752,7 +770,7 @@
                   ></path>
                 </svg>
                 <span class="text-text-secondary dark:text-text-secondary">
-                  Complimentary head & neck relaxation
+                  Deluxe aromatherapy + full spa atmosphere setup (diffuser, soft music, robes involved)
                 </span>
               </li>
               <li class="flex items-start space-x-3">
@@ -770,7 +788,25 @@
                   ></path>
                 </svg>
                 <span class="text-text-secondary dark:text-text-secondary">
-                  Choice of calming music playlist
+                  Bottle of fine champagne for the session
+                </span>
+              </li>
+              <li class="flex items-start space-x-3">
+                <svg
+                  class="w-5 h-5 text-primary-500 mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                <span class="text-text-secondary dark:text-text-secondary">
+                  Molly's Touch <strong>gold</strong> gift bag
                 </span>
               </li>
             </ul>
@@ -816,7 +852,7 @@
               <p
                 class="text-sm text-text-tertiary dark:text-text-tertiary mb-6"
               >
-                Full luxury
+                A full-body escape into luxury, leaving no detail untouched
               </p>
               <div
                 class="text-3xl font-bold text-text-primary dark:text-text-primary mb-2"
@@ -841,7 +877,7 @@
                   ></path>
                 </svg>
                 <span class="text-text-secondary dark:text-text-secondary">
-                  30-60 minutes massage (mix & match styles)
+                  <strong>60 minutes</strong> of full-body luxury experience
                 </span>
               </li>
               <li class="flex items-start space-x-3">
@@ -859,7 +895,7 @@
                   ></path>
                 </svg>
                 <span class="text-text-secondary dark:text-text-secondary">
-                  Hot stone + aromatherapy combo
+                  Full-body professional massage using luxury imported oils (Rare Oud, Black Truffle, Diamond Infused, and more)
                 </span>
               </li>
               <li class="flex items-start space-x-3">
@@ -877,7 +913,7 @@
                   ></path>
                 </svg>
                 <span class="text-text-secondary dark:text-text-secondary">
-                  Luxury facial or foot soak
+                  Luxury facial <strong>or</strong> foot soak, <strong>or</strong> both (client choice)
                 </span>
               </li>
               <li class="flex items-start space-x-3">
@@ -895,7 +931,7 @@
                   ></path>
                 </svg>
                 <span class="text-text-secondary dark:text-text-secondary">
-                  Mini styling session (hair or makeup touch-up)
+                  Top certified manicure/pedicure service (client choice)
                 </span>
               </li>
               <li class="flex items-start space-x-3">
@@ -913,8 +949,44 @@
                   ></path>
                 </svg>
                 <span class="text-text-secondary dark:text-text-secondary">
-                  Free gift bag of spa goodies
+                  Exclusive aromatherapy & Vinewood luxury setup (rose petals, silk robes, top-shelf champagne)
                 </span>
+              </li>
+                <li class="flex items-start space-x-3">
+                  <svg
+                    class="w-5 h-5 text-purple-500 mt-0.5 flex-shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    ></path>
+                  </svg>
+                  <span class="text-text-secondary dark:text-text-secondary">
+                    Cavier & luxury dessert platter (macarons, chocolate, and more)
+                  </span>
+                </li>
+                  <li class="flex items-start space-x-3">
+                    <svg
+                      class="w-5 h-5 text-purple-500 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      ></path>
+                    </svg>
+                    <span class="text-text-secondary dark:text-text-secondary">
+                      VIP Molly's Touch <strong>platinum</strong> gift bag
+                    </span>
               </li>
             </ul>
 
@@ -1052,7 +1124,7 @@
           <ul class="space-y-3">
             <li>
               <a
-                href="/privacy-policy"
+                href="/privacy"
                 class="text-text-secondary dark:text-text-secondary hover:text-primary-500 dark:hover:text-primary-400 transition-colors"
               >
                 Privacy Policy
@@ -1060,7 +1132,7 @@
             </li>
             <li>
               <a
-                href="/terms-conditions"
+                href="/legal"
                 class="text-text-secondary dark:text-text-secondary hover:text-primary-500 dark:hover:text-primary-400 transition-colors"
               >
                 Terms & Conditions

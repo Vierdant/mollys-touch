@@ -6,8 +6,6 @@
 
   let isOpen = false;
 
-
-
   function toggleDropdown() {
     isOpen = !isOpen;
   }

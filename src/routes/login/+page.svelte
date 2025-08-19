@@ -2,15 +2,14 @@
   import { goto } from "$app/navigation";
   import { AuthService } from "../../lib/services/auth";
   import { isFakeAuthEnabled } from "../../lib/config/testing";
-    import { onMount } from "svelte";
-    import { theme } from "../../lib/stores/theme";
-    import { auth } from "../../lib/stores/auth";
+  import { onMount } from "svelte";
+  import { theme } from "../../lib/stores/theme";
+  import { auth } from "../../lib/stores/auth";
 
   let loading = false;
   let error = "";
 
-  onMount(async () => {  
-
+  onMount(async () => {
     if ($auth.isAuthenticated) {
       goto("/");
     }
@@ -27,7 +26,7 @@
 
     try {
       const result = await AuthService.signIn();
-      
+
       // Handle fake authentication result
       if (result.fake && result.redirect) {
         // Use SvelteKit navigation to preserve auth state
@@ -74,23 +73,41 @@
         </svg>
         Back to Home
       </button>
-      <h1 class="text-4xl font-bold text-gradient mb-4">Welcome to Molly's Touch</h1>
+      <h1 class="text-4xl font-bold text-gradient mb-4">
+        Welcome to Molly's Touch
+      </h1>
       <p class="text-text-secondary dark:text-text-secondary">
-        Sign in with your GTA World account to access your characters and manage your profiles.
+        Sign in with your GTA World account to access your characters and manage
+        your profiles.
       </p>
     </div>
 
     <!-- Testing Mode Indicator -->
     {#if isFakeAuthEnabled()}
-      <div class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4 mb-6 text-center">
+      <div
+        class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4 mb-6 text-center"
+      >
         <div class="flex items-center justify-center space-x-2 mb-2">
-          <svg class="w-5 h-5 text-yellow-600 dark:text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+          <svg
+            class="w-5 h-5 text-yellow-600 dark:text-yellow-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z"
+            ></path>
           </svg>
-          <span class="text-sm font-medium text-yellow-800 dark:text-yellow-200">Testing Mode Active</span>
+          <span class="text-sm font-medium text-yellow-800 dark:text-yellow-200"
+            >Testing Mode Active</span
+          >
         </div>
         <p class="text-xs text-yellow-700 dark:text-yellow-300">
-          Using fake authentication for development. No real OAuth calls will be made.
+          Using fake authentication for development. No real OAuth calls will be
+          made.
         </p>
       </div>
     {/if}
@@ -100,7 +117,9 @@
       class="bg-bg-primary dark:bg-bg-secondary rounded-2xl shadow-2xl p-8 border border-border-accent dark:border-border-accent text-center"
     >
       <!-- GTA World Logo/Icon -->
-      <div class="w-20 h-20 bg-bg-secondary rounded-full flex items-center justify-center mx-auto mb-6">
+      <div
+        class="w-20 h-20 bg-bg-secondary rounded-full flex items-center justify-center mx-auto mb-6"
+      >
         <svg
           class="w-10 h-10 text-primary-600 dark:text-primary-400"
           fill="none"
@@ -116,12 +135,15 @@
         </svg>
       </div>
 
-      <h2 class="text-2xl font-bold text-text-primary dark:text-text-primary mb-4">
+      <h2
+        class="text-2xl font-bold text-text-primary dark:text-text-primary mb-4"
+      >
         Sign In with GTA World
       </h2>
 
       <p class="text-text-secondary dark:text-text-secondary mb-8">
-        Connect your GTA World account to access all your characters and manage your profiles.
+        Connect your GTA World account to access all your characters and manage
+        your profiles.
       </p>
 
       <!-- Error Display -->

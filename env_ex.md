@@ -24,10 +24,11 @@ SUPABASE_ANON_KEY=your_supabase_anon_key
 ## 🔧 Switching to Production
 
 1. **Update testing config:**
+
    ```typescript
    // src/lib/config/testing.ts
    export const TESTING_CONFIG = {
-     ENABLE_FAKE_AUTH: false,  // ← Change to FALSE
+     ENABLE_FAKE_AUTH: false, // ← Change to FALSE
    };
    ```
 

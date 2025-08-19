@@ -20,6 +20,7 @@ The application now uses OAuth 2.0 for user authentication with GTA World. Users
 ## User Data Structure
 
 The system receives user data in this format:
+
 ```json
 {
   "user": {
@@ -81,39 +82,46 @@ The OAuth configuration is centralized in `src/lib/config/oauth.ts`. This file c
 ## API Endpoints
 
 ### `/auth/callback`
+
 - Handles the OAuth callback
 - Exchanges authorization code for access token
 - Sets the access token in an HTTP-only cookie
 - Redirects user back to the application
 
 ### `/api/user`
+
 - `GET`: Fetches user data using the access token
 - Returns user information including all characters
 
 ## Frontend Changes
 
 ### Sign In Page (`/login`)
+
 - Single button to authenticate with GTA World
 - No forms or user input required
 - Clean, simple interface
 
 ### Manage Profiles Page (`/profiles`)
+
 - Grid view of all character profiles
 - Edit profile details (phone, routing, address, Discord)
 - Set active profile
 - Only accessible to authenticated users
 
 ### Header Component
+
 - Shows username and active profile phone number
 - "Manage Profiles" button in dropdown menu
 - "Sign In" button for unauthenticated users
 
 ### Auth Service
+
 - `signIn()` method redirects to OAuth
 - `getCurrentUser()` fetches user data using token
 - `logout()` clears tokens and resets the auth store
 
 ### Auth Store
+
 - Stores user data and active character profile
 - Manages authentication state
 - Handles profile switching

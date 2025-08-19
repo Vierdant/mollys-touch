@@ -15,21 +15,23 @@ The system is currently configured for **testing mode** by default. This means:
 ## 🔧 How to Switch Between Testing and Production
 
 ### Testing Mode (Current)
+
 ```typescript
 // src/lib/config/testing.ts
 export const TESTING_CONFIG = {
   // Set this to true to enable fake authentication for testing
-  ENABLE_FAKE_AUTH: true,  // ← Currently TRUE for testing
+  ENABLE_FAKE_AUTH: true, // ← Currently TRUE for testing
   // ... rest of config
 };
 ```
 
 ### Production Mode
+
 ```typescript
 // src/lib/config/testing.ts
 export const TESTING_CONFIG = {
   // Set this to false to enable real OAuth authentication
-  ENABLE_FAKE_AUTH: false,  // ← Change to FALSE for production
+  ENABLE_FAKE_AUTH: false, // ← Change to FALSE for production
   // ... rest of config
 };
 ```
@@ -39,12 +41,15 @@ export const TESTING_CONFIG = {
 **Important**: Even in testing mode, you need a Supabase database for profile storage.
 
 ### 1. Create Supabase Project
+
 - Go to [supabase.com](https://supabase.com)
 - Create a new project
 - Get your project URL and anon key
 
 ### 2. Set Environment Variables
+
 Create a `.env` file with your Supabase credentials:
+
 ```env
 # Supabase Configuration (required for testing and production)
 VITE_SUPABASE_URL=your_supabase_project_url
@@ -52,7 +57,9 @@ VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
 ### 3. Run Database Migration
+
 In your Supabase SQL editor, run the migration from `supabase_migration.sql`:
+
 - This creates the `profiles` table
 - Sets up proper permissions and indexes
 - Enables Row Level Security
@@ -60,16 +67,19 @@ In your Supabase SQL editor, run the migration from `supabase_migration.sql`:
 ## 🚀 Testing the System
 
 ### 1. Start the Development Server
+
 ```bash
 npm run dev
 ```
 
 ### 2. Navigate to `/login`
+
 - Click "Sign In with GTA World"
 - You'll see a 1-second delay (simulating real auth)
 - Then you'll be redirected to the home page
 
 ### 3. Test Profile Management
+
 - Click your profile dropdown in the header
 - Click "Manage Profiles"
 - You'll see all 7 test characters
@@ -77,6 +87,7 @@ npm run dev
 - Edit profiles, set active profiles, etc.
 
 ### 4. Test All Features
+
 - ✅ Authentication flow
 - ✅ Character profile creation in Supabase
 - ✅ Profile editing and saving to database
@@ -90,15 +101,17 @@ npm run dev
 When you're ready to deploy with real OAuth:
 
 ### 1. Update Testing Config
+
 ```typescript
 // src/lib/config/testing.ts
 export const TESTING_CONFIG = {
-  ENABLE_FAKE_AUTH: false,  // ← Change to FALSE
+  ENABLE_FAKE_AUTH: false, // ← Change to FALSE
   // ... rest of config
 };
 ```
 
 ### 2. Set OAuth Environment Variables
+
 ```env
 # OAuth 2.0 Configuration
 CLIENT_ID=your_client_id_here
@@ -111,6 +124,7 @@ VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
 ### 3. Deploy
+
 The system will automatically use real OAuth authentication while keeping Supabase for profile storage.
 
 ## 🧹 Cleaning Up Test Data
@@ -125,11 +139,13 @@ DELETE FROM public.profiles;
 ## 🔍 What You Can Test Right Now
 
 ### Authentication Flow
+
 - Sign in button works
 - Loading states display correctly
 - Redirect to home page after "authentication"
 
 ### Profile Management
+
 - All 7 test characters are displayed
 - **Profiles are automatically created in Supabase**
 - Edit profile information (saves to database)
@@ -138,12 +154,14 @@ DELETE FROM public.profiles;
 - Active profile updates header
 
 ### Navigation
+
 - Header shows username and active profile
 - Profile dropdown works
 - Manage Profiles button navigates correctly
 - Back to Home button works
 
 ### Data Persistence
+
 - **Profiles save to Supabase database**
 - Active profile selection persists
 - Logout clears local state but keeps database data
@@ -151,17 +169,20 @@ DELETE FROM public.profiles;
 ## 🐛 Troubleshooting Testing Mode
 
 ### If profiles don't load:
+
 1. Check browser console for errors
 2. Verify Supabase credentials in `.env`
 3. Ensure `profiles` table exists in Supabase
 4. Check Supabase logs for errors
 
 ### If authentication doesn't work:
+
 1. Verify `ENABLE_FAKE_AUTH: true` in testing config
 2. Check browser console for "🔧 Using FAKE authentication" message
 3. Ensure Supabase environment variables are set
 
 ### If data doesn't persist:
+
 1. Check Supabase connection
 2. Verify RLS policies are set correctly
 3. Check browser console for Supabase errors

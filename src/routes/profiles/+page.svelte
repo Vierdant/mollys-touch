@@ -4,6 +4,7 @@
   import { auth } from "../../lib/stores/auth";
   import { AuthService } from "../../lib/services/auth";
   import type { Character, CharacterProfile } from "../../lib/services/auth";
+    import { setClientSelectedProfileId } from "$lib/config/testing";
 
   let loading = true;
   let saving = false;
@@ -42,27 +43,28 @@
 
     try {
       saving = true;
-      
+
       // Update profile in Supabase
       await AuthService.updateProfile(editingProfile);
-      
+
       // Update the profile in the store
       auth.updateProfile(editingProfile);
-      
+
       // If this profile is being set as active, deactivate others
       if (editingProfile && editingProfile.is_active) {
-        const updatedProfiles = $auth.profiles.map(p => ({
+        const updatedProfiles = $auth.profiles.map((p) => ({
           ...p,
-          is_active: p.id === editingProfile!.id
+          is_active: p.id === editingProfile!.id,
         }));
-        
+
         auth.setProfiles(updatedProfiles);
         auth.setActiveProfile(editingProfile);
+        setClientSelectedProfileId(editingProfile.id);
       }
-      
+
       success = "Profile updated successfully!";
       editingProfile = null;
-      
+
       // Clear success message after 3 seconds
       setTimeout(() => {
         success = "";
@@ -107,10 +109,11 @@
         </svg>
         Back to Home
       </button>
-      
+
       <h1 class="text-3xl font-bold text-gradient">Manage Profiles</h1>
-      
-      <div class="w-20"></div> <!-- Spacer for centering -->
+
+      <div class="w-20"></div>
+      <!-- Spacer for centering -->
     </div>
 
     {#if loading}
@@ -141,13 +144,17 @@
     {:else}
       <!-- Success/Error Messages -->
       {#if success}
-        <div class="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4 mb-6">
+        <div
+          class="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4 mb-6"
+        >
           <p class="text-sm text-green-600 dark:text-green-400">{success}</p>
         </div>
       {/if}
 
       {#if error}
-        <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 mb-6">
+        <div
+          class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 mb-6"
+        >
           <p class="text-sm text-red-600 dark:text-red-400">{error}</p>
         </div>
       {/if}
@@ -155,15 +162,23 @@
       <!-- Profiles Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {#each $auth.profiles as profile (profile.id)}
-          <div class="bg-bg-primary dark:bg-bg-secondary rounded-xl shadow-lg border border-border-accent dark:border-border-accent overflow-hidden">
+          <div
+            class="bg-bg-primary dark:bg-bg-secondary rounded-xl shadow-lg border border-border-accent dark:border-border-accent overflow-hidden"
+          >
             <!-- Profile Header -->
-            <div class="p-6 border-b border-border-primary dark:border-border-primary">
+            <div
+              class="p-6 border-b border-border-primary dark:border-border-primary"
+            >
               <div class="flex items-center justify-between mb-2">
-                <h3 class="text-lg font-semibold text-text-primary dark:text-text-primary">
+                <h3
+                  class="text-lg font-semibold text-text-primary dark:text-text-primary"
+                >
                   {profile.username}
                 </h3>
                 {#if profile.is_active}
-                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200">
+                  <span
+                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200"
+                  >
                     Active
                   </span>
                 {/if}
@@ -179,7 +194,10 @@
                 <!-- Edit Mode -->
                 <div class="space-y-4">
                   <div>
-                    <label for="phone_{profile.id}" class="block text-sm font-medium text-text-primary dark:text-text-primary mb-1">
+                    <label
+                      for="phone_{profile.id}"
+                      class="block text-sm font-medium text-text-primary dark:text-text-primary mb-1"
+                    >
                       Phone Number
                     </label>
                     <input
@@ -192,7 +210,10 @@
                   </div>
 
                   <div>
-                    <label for="routing_{profile.id}" class="block text-sm font-medium text-text-primary dark:text-text-primary mb-1">
+                    <label
+                      for="routing_{profile.id}"
+                      class="block text-sm font-medium text-text-primary dark:text-text-primary mb-1"
+                    >
                       Routing Number
                     </label>
                     <input
@@ -205,7 +226,10 @@
                   </div>
 
                   <div>
-                    <label for="address_{profile.id}" class="block text-sm font-medium text-text-primary dark:text-text-primary mb-1">
+                    <label
+                      for="address_{profile.id}"
+                      class="block text-sm font-medium text-text-primary dark:text-text-primary mb-1"
+                    >
                       Address
                     </label>
                     <textarea
@@ -218,7 +242,10 @@
                   </div>
 
                   <div>
-                    <label for="discord_{profile.id}" class="block text-sm font-medium text-text-primary dark:text-text-primary mb-1">
+                    <label
+                      for="discord_{profile.id}"
+                      class="block text-sm font-medium text-text-primary dark:text-text-primary mb-1"
+                    >
                       Discord
                     </label>
                     <input
@@ -265,28 +292,40 @@
                 <!-- View Mode -->
                 <div class="space-y-3">
                   <div>
-                    <span class="text-sm font-medium text-text-secondary dark:text-text-secondary">Phone:</span>
+                    <span
+                      class="text-sm font-medium text-text-secondary dark:text-text-secondary"
+                      >Phone:</span
+                    >
                     <p class="text-text-primary dark:text-text-primary">
                       {profile.phone_number || "Not set"}
                     </p>
                   </div>
 
                   <div>
-                    <span class="text-sm font-medium text-text-secondary dark:text-text-secondary">Routing:</span>
+                    <span
+                      class="text-sm font-medium text-text-secondary dark:text-text-secondary"
+                      >Routing:</span
+                    >
                     <p class="text-text-primary dark:text-text-primary">
                       {profile.routing_number || "Not set"}
                     </p>
                   </div>
 
                   <div>
-                    <span class="text-sm font-medium text-text-secondary dark:text-text-secondary">Address:</span>
+                    <span
+                      class="text-sm font-medium text-text-secondary dark:text-text-secondary"
+                      >Address:</span
+                    >
                     <p class="text-text-primary dark:text-text-primary">
                       {profile.address || "Not set"}
                     </p>
                   </div>
 
                   <div>
-                    <span class="text-sm font-medium text-text-secondary dark:text-text-secondary">Discord:</span>
+                    <span
+                      class="text-sm font-medium text-text-secondary dark:text-text-secondary"
+                      >Discord:</span
+                    >
                     <p class="text-text-primary dark:text-text-primary">
                       {profile.discord || "Not set"}
                     </p>

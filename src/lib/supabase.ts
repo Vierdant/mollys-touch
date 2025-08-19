@@ -1,11 +1,25 @@
 import { createClient } from "@supabase/supabase-js";
 
-// These environment variables are only used server-side in API routes
-// They should NOT have VITE_ prefix to avoid exposure to client-side code
-const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
+// Get environment variables with fallbacks
+const supabaseUrl =
+  process.env.SUPABASE_URL ||
+  import.meta.env.VITE_SUPABASE_URL ||
+  import.meta.env.SUPABASE_URL;
+
+const supabaseAnonKey =
+  process.env.SUPABASE_ANON_KEY ||
+  import.meta.env.VITE_SUPABASE_ANON_KEY ||
+  import.meta.env.SUPABASE_ANON_KEY;
 
 if (!supabaseUrl || !supabaseAnonKey) {
+  console.error("Available env vars:", {
+    SUPABASE_URL: process.env.SUPABASE_URL,
+    VITE_SUPABASE_URL: import.meta.env.VITE_SUPABASE_URL,
+    SUPABASE_ANON_KEY: process.env.SUPABASE_ANON_KEY ? "[HIDDEN]" : undefined,
+    VITE_SUPABASE_ANON_KEY: import.meta.env.VITE_SUPABASE_ANON_KEY
+      ? "[HIDDEN]"
+      : undefined,
+  });
   throw new Error("Missing Supabase environment variables");
 }
 
